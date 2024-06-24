@@ -1,0 +1,48 @@
+
+//Builder Pattern:
+
+//Definition: This pattern separates the construction of a complex object from its representation. It allows for step-by-step object creation with potential customization. Builders are useful when you have many optional parameters or want to create objects in a fluent style.
+
+//Benefits:
+
+//Improves code readability by breaking down object construction into smaller steps.//
+//Enables customization of object creation process.
+//Promotes immutability of constructed objects.
+class User {
+  final String name;
+  final int age;
+
+  User(this.name, this.age);
+}
+
+class UserBuilder {
+  String name;
+  int? age; // Optional age
+
+  UserBuilder setName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  UserBuilder setAge(int age) {
+    this.age = age;
+    return this;
+  }
+
+  User build() {
+    if (name.isEmpty) {
+      throw ArgumentError('Name cannot be empty');
+    }
+    return User(name, age ?? 0); // Default age to 0 if not set
+  }
+}
+
+void main() {
+  final user = UserBuilder()
+    .setName('Alice')
+    .setAge(30)
+    .build();
+
+  print(user.name); // Prints 'Alice'
+  print(user.age);  // Prints '30'
+}

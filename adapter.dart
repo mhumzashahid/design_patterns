@@ -56,3 +56,24 @@ class FancyUIServiceAdapter implements IMultiRestoApp {
     fancyUIService.displayRecommendations(data); // Already expects DisplayData
   }
 }
+// Main application entry point
+void main() {
+  
+  final myData = MenuAndRecommendationsXml([
+    MenuItemXml('Pizza', 10.99),
+    // More menu items
+  ], [
+    RecommendationXml('Pasta', 'Delicious pasta options...'),
+    // More recommendations
+  ]);
+final multiRestoApp = MultiRestoApp();
+  multiRestoApp.displayMenus(myData); // Pass the XmlData object directly
+  multiRestoApp.displayRecommendations(myData);
+
+  print("==========================================");
+
+  // New UI with adapter (assuming conversion happens elsewhere)
+  final adapter = FancyUIServiceAdapter();
+  adapter.displayMenus(myData); // Pass the XmlData object even though adapter expects DisplayData
+  adapter.displayRecommendations(myData);
+}

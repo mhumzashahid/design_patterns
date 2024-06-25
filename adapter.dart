@@ -41,3 +41,18 @@ class FancyUIService {
     }
   }
 }
+
+class FancyUIServiceAdapter implements IMultiRestoApp {
+  final FancyUIService fancyUIService;
+  FancyUIServiceAdapter() : fancyUIService = FancyUIService();
+  @override
+  void displayMenus(DisplayData data) {
+    print("Displaying Fancy Menus using converted JSON data...");
+    fancyUIService.displayMenus(data); // Already expects DisplayData
+  }
+  @override
+  void displayRecommendations(DisplayData data) {
+    print("Displaying Fancy Recommendations using converted JSON data...");
+    fancyUIService.displayRecommendations(data); // Already expects DisplayData
+  }
+}
